@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PersonelDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Departman">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Personel" Relationship="Self.FK__Personel__Depart__398D8EEE" FromRole="Departman" ToRole="Personel" />
+  </EntityType>
+  <EntityType Name="Personel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="DepartmanId" Type="Int32" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Yas" Type="Byte" />
+    <Property Name="Maas" Type="Int16" />
+    <Property Name="DogumTarihi" Type="DateTime" Precision="0" />
+    <Property Name="cisiyet" Type="Boolean" />
+    <Property Name="EvliMi" Type="Boolean" />
+    <NavigationProperty Name="Departman" Relationship="Self.FK__Personel__Depart__398D8EEE" FromRole="Personel" ToRole="Departman" />
+  </EntityType>
+  <Association Name="FK__Personel__Depart__398D8EEE">
+    <End Role="Departman" Type="Self.Departman" Multiplicity="0..1" />
+    <End Role="Personel" Type="Self.Personel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departman">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Personel">
+        <PropertyRef Name="DepartmanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PersonelDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Departman" EntityType="Self.Departman" />
+    <EntitySet Name="Personel" EntityType="Self.Personel" />
+    <AssociationSet Name="FK__Personel__Depart__398D8EEE" Association="Self.FK__Personel__Depart__398D8EEE">
+      <End Role="Departman" EntitySet="Departman" />
+      <End Role="Personel" EntitySet="Personel" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

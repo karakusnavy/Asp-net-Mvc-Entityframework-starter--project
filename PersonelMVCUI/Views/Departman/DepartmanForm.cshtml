@@ -1,0 +1,21 @@
+﻿@model PersonelMVCUI.Models.EntityFramework.Departman
+@{
+    ViewBag.Title = "Yeni";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Kaydet", "Departman", FormMethod.Post))
+{
+    @Html.AntiForgeryToken() @*Link ile eklemeleri önlüyor*@
+    <div class="form-group">
+        @Html.LabelFor(m => m.Ad)
+        @Html.TextBoxFor(m => m.Ad, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Ad) @*Önceden Belirlenmiş Hata Mesajı Burada Hata Olursa Yazacak*@
+    </div>
+    @Html.HiddenFor(m => m.Id)
+    <button class="btn btn-success" type="submit">Ekle</button>
+}
+@section scripts{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}
