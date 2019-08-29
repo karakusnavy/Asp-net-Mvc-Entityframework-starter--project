@@ -1,5 +1,5 @@
 ## Asp NET MVC
-Hi, this is my first big mvc project.
+Hi, this is my first starter mvc project.
 
 **Content**
 
